@@ -2,6 +2,6 @@ import React from 'react'
 
 export default () => {
     return (
-        <div>Global feed</div>
+        <div className="container">Global feed</div>
     )
 }
