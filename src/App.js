@@ -2,15 +2,21 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom'
 
 import Routes from '@/routes'
-import { TopBar } from '@/components/TopBar';
+import { TopBar, CurrentUserChecker } from '@/components'
+import { CurrentUserProvider } from '@/context'
+
 
 export default () => {
   return (
     <div className="App">
-      <BrowserRouter>
-        <TopBar />
-        <Routes />
-      </BrowserRouter>
+      <CurrentUserProvider>
+        <CurrentUserChecker>
+          <BrowserRouter>
+            <TopBar />
+            <Routes />
+          </BrowserRouter>
+        </CurrentUserChecker>
+      </CurrentUserProvider>
     </div>
   );
 }
