@@ -25,7 +25,7 @@ export const CurrentUserChecker = ({ children }) => {
               isLoading: true,
             }
           })
-    }, [])
+    }, [doFetch, token, setCurrentUserState])
 
     useEffect(() => {
         if(!response) return

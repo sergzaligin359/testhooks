@@ -17,10 +17,10 @@ export const useFetch = url => {
         }, 3000)
     }, [])
 
-    const doFetch = (settings = {}) => {
+    const doFetch = useCallback((settings = {}) => {
         setSettings(settings)
         setIsLoading(true)
-    }
+    }, [])
 
     useEffect(() => {
         const requestSettings = {
