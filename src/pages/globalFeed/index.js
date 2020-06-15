@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Feed } from '@/components'
+import { Feed, Pagination } from '@/components'
 import { useFetch } from '@/hooks'
 
 export default () => {
@@ -28,6 +28,7 @@ export default () => {
                         !isLoading && response && (
                             <>
                                 <Feed articles={ response.articles } />
+                                <Pagination total={500} />
                             </>
                         )
                     }
