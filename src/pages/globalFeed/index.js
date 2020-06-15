@@ -1,17 +1,26 @@
 import React, { useEffect } from 'react'
+import {stringify} from 'query-string'
+
 import { Feed, Pagination } from '@/components'
 import { useFetch } from '@/hooks'
+import { getPaginator, limit } from '@/utils'
 
-export default () => {
+export default props => {
 
-    const apiUrl = '/articles?limit=10&offset=0'
+    const { offset, currentPage } = getPaginator(props.location.search)
+
+    const stringifiedParams = stringify({
+        limit,
+        offset
+      })
+    const apiUrl = `/articles?${stringifiedParams}`
+    const currentUrl = props.match.url
 
     const [{ response, isLoading, error }, doFetch] = useFetch(apiUrl)
 
     useEffect(() => {
-        if(response) return
         doFetch()
-    }, [response, doFetch])
+    }, [doFetch, currentPage])
 
     return (
         <div className="home-page">
@@ -29,10 +38,10 @@ export default () => {
                             <>
                                 <Feed articles={ response.articles } />
                                 <Pagination 
-                                    total={500} 
-                                    limit={5}
-                                    url={'/'}
-                                    currentPage={1}
+                                    total={response.articlesCount} 
+                                    limit={limit}
+                                    url={currentUrl}
+                                    currentPage={currentPage}
                                 />
                             </>
                         )
