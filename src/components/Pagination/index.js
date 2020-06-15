@@ -11,12 +11,12 @@ export const Pagination = ({ total, limit, url, currentPage }) => {
     return (
         <ul className="pagination">
             {pages.map(page => (
-            <PaginationItem
-                page={page}
-                key={page}
-                currentPage={currentPage}
-                url={url}
-            />
+                <PaginationItem
+                    page={page}
+                    key={page}
+                    currentPage={currentPage}
+                    url={url}
+                />
             ))}
       </ul>
     )

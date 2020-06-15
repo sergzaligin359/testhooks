@@ -2,15 +2,15 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import classNames from 'classnames'
 
-export const PaginationItem = ({page, currentPage, url, key}) => {
+export const PaginationItem = ({page, currentPage, url}) => {
     const liClasses = classNames({
         'page-item': true,
         active: currentPage === page
     })
     return (
-        <li className={liClasses} key={page}>
+        <li className={liClasses} >
             <Link to={`${url}?page=${page}`} className="page-link">
-            {page}
+                {page}
             </Link>
         </li>
     )
