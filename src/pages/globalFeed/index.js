@@ -28,7 +28,12 @@ export default () => {
                         !isLoading && response && (
                             <>
                                 <Feed articles={ response.articles } />
-                                <Pagination total={500} />
+                                <Pagination 
+                                    total={500} 
+                                    limit={5}
+                                    url={'/'}
+                                    currentPage={1}
+                                />
                             </>
                         )
                     }
