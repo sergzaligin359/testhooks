@@ -13,7 +13,7 @@ export const YoureFeed =  props => {
         limit,
         offset
       })
-    const apiUrl = `/articles?${stringifiedParams}`
+    const apiUrl = `/articles/feed?${stringifiedParams}`
     const currentUrl = props.match.url
 
     const [{ response, isLoading, error }, doFetch] = useFetch(apiUrl)

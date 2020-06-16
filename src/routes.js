@@ -8,7 +8,7 @@ export default () => {
     <Switch>
       <Route path="/" component={ GlobalFeed } exact />
       <Route path="/tags/:slug" component={ TagFeed } />
-      <Route path="/youre/:slug" component={ YoureFeed } />
+      <Route path="/feed" component={ YoureFeed } />
       <Route path="/articles/:slug" component={ Article } />
       <Route path="/login" component={ Authentication } />
       <Route path="/register" component={ Authentication } />
