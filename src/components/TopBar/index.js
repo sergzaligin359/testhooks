@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import {NavLink, Link} from 'react-router-dom'
 
-import { CurrentUserContext } from '@/context';
+import { CurrentUserContext } from '@/context'
 
 export const TopBar = () => {
   const [{ isLoggedIn, currentUser }] = useContext(CurrentUserContext)

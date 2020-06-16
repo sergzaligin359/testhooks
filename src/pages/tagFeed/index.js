@@ -5,13 +5,14 @@ import { Feed, Pagination, FeedToggler, ErrorMessage, Loading, PopularTags } fro
 import { useFetch } from '@/hooks'
 import { getPaginator, limit } from '@/utils'
 
-export const GlobalFeed =  props => {
+export const TagFeed =  props => {
 
+    const tagName = props.match.params.slug
     const { offset, currentPage } = getPaginator(props.location.search)
-
     const stringifiedParams = stringify({
         limit,
-        offset
+        offset,
+        tag: tagName
       })
     const apiUrl = `/articles?${stringifiedParams}`
     const currentUrl = props.match.url
@@ -20,7 +21,7 @@ export const GlobalFeed =  props => {
 
     useEffect(() => {
         doFetch()
-    }, [doFetch, currentPage])
+    }, [doFetch, currentPage, tagName])
 
     return (
         <div className="home-page">
@@ -31,7 +32,7 @@ export const GlobalFeed =  props => {
             <div className="container page">
                 <div className="row">
                 <div className="col-md-9">
-                    <FeedToggler tagName={'foo'} />
+                    <FeedToggler tagName={ tagName } />
                     { isLoading && <Loading /> }
                     { error && <ErrorMessage /> }
                     {
