@@ -1,14 +1,17 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useReducer } from 'react'
 
-export const CurrentUserContext = createContext([{}, () => {}])
+import { auth } from '@/reducers'
+
+export const CurrentUserContext = createContext()
 
 export const CurrentUserProvider = ({ children }) => {
-    const [state, setState] = useState({
+    const initialState = {
         isLoading: false,
         isLoggedIn: null,
         currentUser: null,
-    })
+    }
+    const value = useReducer(auth, initialState)
     return (
-        <CurrentUserContext.Provider value={[state, setState]}>{ children }</CurrentUserContext.Provider>
+        <CurrentUserContext.Provider value={ value }>{ children }</CurrentUserContext.Provider>
     )
 }

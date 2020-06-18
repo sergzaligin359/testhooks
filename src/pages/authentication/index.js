@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom'
 import { useFetch, useLocalStorage } from '@/hooks';
 import { CurrentUserContext } from '@/context';
 import { BackendErrorMessages } from '@/components';
+import { SET_AUTH } from '@/actionTypes';
 
 export const Authentication = ({ match }) => {
 
@@ -19,7 +20,7 @@ export const Authentication = ({ match }) => {
 
   const [{ response, error, isLoading  }, doFetch] = useFetch(apiUrl)
   const [token, setToken] = useLocalStorage('token')
-  const [, setCurrentUserState] = useContext(CurrentUserContext)
+  const [, dispatch] = useContext(CurrentUserContext)
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -36,15 +37,11 @@ export const Authentication = ({ match }) => {
   useEffect(() => {
     if(!response) return;
     setToken(response.user.token)
-    setCurrentUserState(state => {
-      return {
-        ...state,
-        isLoading: false,
-        isLoggedIn: true,
-        currentUser: response.user,
-      }
+    dispatch({
+      type: SET_AUTH,
+      payload: response.user
     })
-  }, [response, setToken, setCurrentUserState])
+  }, [response, setToken, dispatch])
 
   if(token) {
     return <Redirect to='/' />
