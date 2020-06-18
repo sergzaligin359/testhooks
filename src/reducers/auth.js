@@ -1,12 +1,6 @@
 import { IS_LOADING, SET_AUTH, LOGOUT, SET_UNAUTH } from '@/actionTypes'
 
-const initialState = {
-    isLoading: false,
-    isLoggedIn: null,
-    currentUser: null,
-}
-
-export const auth = (state = initialState, { type, payload }) => {
+export const auth = (state, { type, payload }) => {
     switch (type) {
         case IS_LOADING:
             return {
